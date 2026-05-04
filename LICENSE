@@ -1,0 +1,78 @@
+NULKRATOS-CORE PROPRIETARY LICENSE
+Copyright (c) 2025 Nulkratos-Core. All Rights Reserved.
+
+IMPORTANT — READ CAREFULLY BEFORE USING, COPYING, OR VIEWING THIS SOFTWARE.
+
+This software, including all source code, design, architecture, cryptographic
+implementation, user interface, visual design, documentation, and all associated
+files (collectively, the "Software"), is the exclusive intellectual property of
+Nulkratos-Core and is protected by copyright law and international treaties.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHAT YOU ARE EXPLICITLY NOT ALLOWED TO DO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. DEPLOY — You may NOT deploy, host, serve, or make this Software available
+   on any server, platform, hosting service, cloud provider, CDN, domain, or
+   any other infrastructure, whether public or private, paid or free.
+
+2. REDISTRIBUTE — You may NOT copy, distribute, publish, sublicense, sell,
+   rent, lease, or otherwise transfer the Software or any portion of it to
+   any third party.
+
+3. MODIFY & REPUBLISH — You may NOT create derivative works based on this
+   Software and publish, distribute, or deploy them in any form.
+
+4. COMMERCIAL USE — You may NOT use this Software or any portion of it for
+   any commercial purpose, product, or service.
+
+5. REBRAND — You may NOT remove, alter, or obscure any copyright notices,
+   branding, trademarks, or attribution in this Software.
+
+6. MIRROR — You may NOT create mirrors, forks intended for deployment, or
+   archived copies of this Software for distribution purposes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHAT YOU ARE ALLOWED TO DO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. VIEW — You may view and read this source code for personal educational
+   and security audit purposes only.
+
+2. AUDIT — You may audit the cryptographic implementation for personal
+   verification of the security claims made by Nulkratos-Core.
+
+3. REPORT — You may report security vulnerabilities to nulkratos@gmail.com.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THE ONLY AUTHORIZED DEPLOYMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The only authorized, verified, and legitimate instance of Nulkratos-Core is:
+
+    https://nulkratos-core.web.app
+
+Any other deployment is unauthorized, unverified, and may be malicious.
+Always verify the Page Integrity hash matches between both parties.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ENFORCEMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Violations of this license will be pursued to the fullest extent of applicable
+copyright law. Unauthorized deployments will be reported and subject to DMCA
+takedown notices.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DISCLAIMER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE SOFTWARE IS PROVIDED FOR VIEWING PURPOSES ONLY. NULKRATOS-CORE MAKES NO
+WARRANTIES REGARDING THE SOFTWARE BEYOND WHAT IS STATED AT THE AUTHORIZED
+DEPLOYMENT URL ABOVE. IN NO EVENT SHALL NULKRATOS-CORE BE LIABLE FOR ANY
+CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM UNAUTHORIZED USE OF THIS
+SOFTWARE.
+
+For permissions beyond the scope of this license, contact: nulkratos@gmail.com
+
+© 2025 Nulkratos-Core. All Rights Reserved.
