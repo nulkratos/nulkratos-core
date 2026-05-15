@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Signal Lost | Nulkratos-Core</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@200;300;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#000008;--surface:#03000f;
+  --p1:#00f5ff;--p2:#00c8d4;--green:#00ff87;--red:#ff2d55;
+  --text:#e8f8ff;--text2:#7ab8c4;--text3:#1a4050;
+  --border:rgba(0,245,255,0.08);--border2:rgba(0,245,255,0.18);
+  --mono:'Share Tech Mono',monospace;--display:'Exo 2',sans-serif;
+}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:var(--mono);
+  background:var(--bg);
+  color:var(--text);
+  display:flex;align-items:center;justify-content:center;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Grid background */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,245,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,245,255,.025) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse at 50% 50%,black 0%,transparent 75%);
+}
+/* Radial glow */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 700px 500px at 30% 20%,rgba(0,245,255,.04) 0%,transparent 65%),
+    radial-gradient(ellipse 500px 500px at 80% 85%,rgba(0,200,212,.03) 0%,transparent 65%),
+    radial-gradient(ellipse 300px 300px at 60% 50%,rgba(255,45,85,.03) 0%,transparent 65%);
+}
+
+canvas{position:fixed;inset:0;pointer-events:none;z-index:0}
+
+.container{
+  position:relative;z-index:1;
+  text-align:center;
+  padding:2rem 1.5rem;
+  max-width:520px;
+  width:100%;
+  animation:fadeUp .7s cubic-bezier(.16,1,.3,1) both;
+}
+
+/* Big 404 */
+.glitch-wrap{position:relative;margin-bottom:1.5rem;display:inline-block}
+.glitch{
+  font-family:var(--display);
+  font-size:clamp(5rem,20vw,9rem);
+  font-weight:900;
+  letter-spacing:-.02em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(0,245,255,.3);
+  position:relative;
+  line-height:1;
+  user-select:none;
+}
+.glitch::before,.glitch::after{
+  content:'404';
+  position:absolute;inset:0;
+  font-family:var(--display);font-size:inherit;font-weight:inherit;letter-spacing:inherit;
+  -webkit-text-stroke:0;
+}
+.glitch::before{
+  color:var(--red);
+  clip-path:polygon(0 0,100% 0,100% 35%,0 35%);
+  animation:glitchTop 4s infinite;
+  opacity:.7;
+}
+.glitch::after{
+  color:var(--p1);
+  clip-path:polygon(0 60%,100% 60%,100% 100%,0 100%);
+  animation:glitchBot 4s infinite;
+  opacity:.7;
+}
+
+.signal-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,45,85,.08);
+  border:1px solid rgba(255,45,85,.22);
+  border-radius:99px;
+  padding:.35rem .9rem;
+  font-size:.62rem;
+  color:rgba(255,45,85,.9);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:1.2rem;
+  animation:blink 2s step-end infinite;
+}
+.signal-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 6px var(--red);
+  animation:pulse 1.4s ease-in-out infinite;
+}
+
+h1{
+  font-family:var(--display);
+  font-size:clamp(1.1rem,4vw,1.5rem);
+  font-weight:300;
+  color:var(--text2);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:.6rem;
+}
+h1 strong{color:var(--text);font-weight:800}
+
+.subtitle{
+  font-size:.65rem;
+  color:var(--text3);
+  letter-spacing:.1em;
+  line-height:2;
+  margin-bottom:2rem;
+  text-transform:uppercase;
+}
+
+/* Terminal block */
+.terminal{
+  background:rgba(0,3,15,.9);
+  border:1px solid var(--border2);
+  border-radius:14px;
+  padding:1rem 1.2rem;
+  margin-bottom:1.8rem;
+  text-align:left;
+  font-size:.65rem;
+  line-height:2;
+  box-shadow:0 0 40px rgba(0,245,255,.04),0 1px 0 rgba(255,255,255,.03) inset;
+}
+.t-line{color:var(--text3)}
+.t-line .label{color:rgba(0,245,255,.45);margin-right:.5rem}
+.t-line .val{color:var(--text2)}
+.t-line .val.err{color:rgba(255,45,85,.7)}
+.t-line .val.ok{color:rgba(0,255,135,.7)}
+.t-cursor{
+  display:inline-block;width:7px;height:.8em;
+  background:var(--p1);vertical-align:middle;
+  animation:blink .9s step-end infinite;margin-left:2px;
+}
+
+/* Back button */
+.back-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(0,245,255,.1));
+  border:1px solid var(--border2);
+  border-radius:10px;
+  padding:.75rem 1.5rem;
+  color:var(--p1);
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.12em;
+  text-decoration:none;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .2s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 0 20px rgba(0,245,255,.08);
+}
+.back-btn:hover{
+  background:linear-gradient(135deg,rgba(0,245,255,.12),rgba(0,245,255,.18));
+  border-color:rgba(0,245,255,.4);
+  transform:translateY(-2px);
+  box-shadow:0 4px 24px rgba(0,245,255,.18);
+}
+.back-btn svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none;flex-shrink:0}
+
+.footer-note{
+  margin-top:1.8rem;
+  font-size:.55rem;
+  color:var(--text3);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.footer-note span{color:rgba(0,245,255,.3)}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes glitchTop{
+  0%,92%{transform:translate(0)}
+  93%{transform:translate(-3px,-1px)}
+  94%{transform:translate(3px,1px)}
+  95%{transform:translate(-2px,0)}
+  96%,100%{transform:translate(0)}
+}
+@keyframes glitchBot{
+  0%,92%{transform:translate(0)}
+  93%{transform:translate(3px,1px)}
+  94%{transform:translate(-3px,-1px)}
+  95%{transform:translate(2px,0)}
+  96%,100%{transform:translate(0)}
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(.7)}
+}
+@keyframes blink{
+  0%,100%{opacity:1}50%{opacity:0}
+}
+
+@media(max-width:480px){
+  .terminal{font-size:.6rem;padding:.8rem 1rem}
+  .back-btn{font-size:.64rem;padding:.65rem 1.2rem}
+}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div class="container">
+  <div class="glitch-wrap">
+    <div class="glitch">404</div>
+  </div>
+
+  <div class="signal-badge">
+    <span class="signal-dot"></span>
+    Signal Lost
+  </div>
+
+  <h1>Channel <strong>Not Found</strong></h1>
+  <p class="subtitle">The requested route does not exist in this node</p>
+
+  <div class="terminal">
+    <div class="t-line"><span class="label">STATUS</span><span class="val err">ERR_ROUTE_NOT_FOUND</span></div>
+    <div class="t-line"><span class="label">PROTO</span><span class="val">AES-256-GCM · HKDF · Argon2id</span></div>
+    <div class="t-line"><span class="label">NODE</span><span class="val ok">nulkratos.app</span></div>
+    <div class="t-line"><span class="label">ACTION</span><span class="val">return to secure channel<span class="t-cursor"></span></span></div>
+  </div>
+
+  <a class="back-btn" href="/">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Return to Nulkratos-Core
+  </a>
+
+  <p class="footer-note">Zero-knowledge · <span>end-to-end encrypted</span> · no account required</p>
+</div>
+
+<script>
+(function(){
+  const canvas=document.getElementById('c');
+  const ctx=canvas.getContext('2d');
+  let W,H;
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+  window.addEventListener('resize',resize);resize();
+  function P(){this.reset();}
+  P.prototype.reset=function(){
+    this.x=Math.random()*W;this.y=Math.random()*H;
+    this.r=Math.random()*1.2+.2;
+    this.vx=(Math.random()-.5)*.06;this.vy=-(Math.random()*.1+.02);
+    this.life=Math.random();this.max=Math.random()*.5+.3;
+    const roll=Math.random();
+    this.color=roll>.8?'#ff2d55':roll>.5?'#00f5ff':'#00ff87';
+  };
+  P.prototype.update=function(){this.x+=this.vx;this.y+=this.vy;this.life-=.001;if(this.life<=0||this.y<-10)this.reset();};
+  P.prototype.draw=function(){
+    const a=Math.min(this.life/this.max,1)*.35;
+    ctx.save();ctx.globalAlpha=a;ctx.fillStyle=this.color;
+    ctx.shadowBlur=8;ctx.shadowColor=this.color;
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fill();ctx.restore();
+  };
+  const pts=Array.from({length:50},()=>new P());
+  function loop(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.update();p.draw();});requestAnimationFrame(loop);}
+  loop();
+})();
+</script>
+</body>
+</html>

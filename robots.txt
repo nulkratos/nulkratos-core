@@ -1,0 +1,15 @@
+# robots.txt — Nulkratos-Core
+# https://nulkratos.app/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://nulkratos.app/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
+
+# Do not index Firestore or Firebase internal paths
+Disallow: /__/
+Disallow: /firebase-messaging-sw.js

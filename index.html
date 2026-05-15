@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="https://schema.org/WebApplication">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Nulkratos-Core — Zero-Knowledge Encrypted Messenger</title>
+<meta name="description" content="Zero-knowledge encrypted chat: AES-256-GCM, Argon2id, HKDF. No account, no phone number, no plaintext stored. Private secure messaging in your browser.">
+<meta name="keywords" content="encrypted messenger, private chat no account, zero knowledge encryption, anonymous messaging, secure browser chat, end-to-end encrypted chat, AES-256 messenger, no sign up messaging app, anonymous chat online, private messaging app, encrypted communication, PIN based chat, no phone number messenger, secure private chat, browser based encryption">
+<meta name="author" content="Nulkratos-Core">
+<meta name="rating" content="general">
+<meta name="revisit-after" content="7 days">
+<meta name="language" content="English">
+<meta name="copyright" content="© 2025 Nulkratos-Core">
+<meta name="category" content="security, privacy, encryption">
+<meta name="coverage" content="Worldwide">
+<meta name="distribution" content="Global">
+<meta name="target" content="all">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<link rel="canonical" href="https://nulkratos.app/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noodp">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="bingbot" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nulkratos-Core">
+<meta property="og:title" content="Nulkratos-Core — Zero-Knowledge Encrypted Messenger">
+<meta property="og:description" content="Zero-knowledge encrypted chat: AES-256-GCM, Argon2id, HKDF. No account, no phone number, no plaintext stored. Private secure messaging in your browser.">
+<meta property="og:url" content="https://nulkratos.app/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nulkratos.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nulkratos-Core — encrypted chat with AES-256-GCM and zero-knowledge architecture">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nulkratos">
+<meta name="twitter:creator" content="@nulkratos">
+<meta name="twitter:title" content="Nulkratos-Core — Zero-Knowledge Encrypted Messenger">
+<meta name="twitter:description" content="Zero-knowledge encrypted chat: AES-256-GCM, Argon2id, HKDF. No account, no phone number, no plaintext stored. Private secure messaging in your browser.">
+<meta name="twitter:image" content="https://nulkratos.app/og-image.png">
+<meta name="twitter:image:alt" content="Nulkratos-Core encrypted messenger interface">
+
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="no-referrer">
+
+<meta name="theme-color" content="#000008">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="Nulkratos-Core">
+<meta name="apple-mobile-web-app-title" content="Nulkratos">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000010'/%3E%3Ccircle cx='16' cy='16' r='13' stroke='rgba(0,245,255,.2)' stroke-width='.7'/%3E%3Cpath d='M16 4C23 4 27 9.5 27 15.5C27 21.5 23 27 16 27C9 27 5 22 5 16' stroke='%2300f5ff' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3Cpath d='M16 8C22 8 25.5 12 25.5 16C25.5 20 22 24 16 24' stroke='%237fffff' stroke-width='1.1' stroke-linecap='round' fill='none'/%3E%3Cpolygon points='16,10 19,14 16,18 13,14' stroke='%2300ff87' stroke-width='.8' fill='rgba(0,255,135,.15)'/%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%2300f5ff'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23000010'/%3E%3Ccircle cx='90' cy='90' r='73' stroke='rgba(0,245,255,.2)' stroke-width='4'/%3E%3Cpath d='M90 22C131 22 152 53 152 87C152 121 131 158 90 158C49 158 28 126 28 90' stroke='%2300f5ff' stroke-width='8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M90 45C124 45 144 67 144 90C144 113 124 135 90 135' stroke='%237fffff' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3Cpolygon points='90,56 108,79 90,102 72,79' stroke='%2300ff87' stroke-width='4' fill='rgba(0,255,135,.15)'/%3E%3Ccircle cx='90' cy='90' r='9' fill='%2300f5ff'/%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://nulkratos.app/#webapp",
+      "name": "Nulkratos-Core",
+      "alternateName": "Nulkratos Core Encrypted Messenger",
+      "url": "https://nulkratos.app/",
+      "description": "Zero-knowledge browser-based encrypted messenger using AES-256-GCM, Argon2id key derivation, and HKDF message ratchet. No account, no phone number, no plaintext stored on any server.",
+      "applicationCategory": "CommunicationApplication",
+      "operatingSystem": "Any (browser-based)",
+      "browserRequirements": "Requires JavaScript and WebCrypto API. Chrome 90+, Firefox 88+, Safari 15+, Edge 90+.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "AES-256-GCM end-to-end encryption",
+        "Argon2id 64MB memory-hard key derivation",
+        "HKDF forward-secret message ratchet",
+        "Chaff traffic injection",
+        "Timestamp blinding",
+        "Zero-knowledge architecture",
+        "No account or phone number required",
+        "No plaintext stored on server"
+      ],
+      "screenshot": "https://nulkratos.app/og-image.png",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "creator": {
+        "@type": "Organization",
+        "name": "Nulkratos-Core",
+        "url": "https://nulkratos.app/"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nulkratos.app/#website",
+      "url": "https://nulkratos.app/",
+      "name": "Nulkratos-Core",
+      "description": "Zero-knowledge encrypted messenger — AES-256-GCM, Argon2id, no account required.",
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://nulkratos.app/"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://nulkratos.app/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can Nulkratos-Core read my messages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. All encryption and decryption happens entirely inside your browser. Your PIN and derived encryption key never leave your device. The server receives only AES-256-GCM ciphertext that is mathematically impossible to decrypt without your PIN."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Nulkratos-Core require an account or phone number?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No account, no phone number, no email address required. You only need a shared channel ID and a PIN agreed with your contact. Zero identity linkage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I forget my PIN?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your messages are permanently unrecoverable. The PIN is the only key — there is no password reset, no recovery code, and no backdoor. This is by design: zero-knowledge means we genuinely have no way to help."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Nulkratos-Core different from other secure messaging apps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nulkratos-Core requires no phone number, no account, and no app install — just a shared channel ID and PIN agreed out-of-band. Everything runs in your browser with zero identity linkage. Purpose-built for maximum privacy and anonymity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What encryption does Nulkratos-Core use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AES-256-GCM authenticated encryption, Argon2id 64MB memory-hard key derivation, HKDF forward-secret message ratchet, chaff traffic injection, and timestamp blinding. All cryptography runs in your browser via the WebCrypto API."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://nulkratos.app/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nulkratos.app/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="https://firestore.googleapis.com">
+<link rel="dns-prefetch" href="https://www.gstatic.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@200;300;400;600;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/argon2-browser@1.18.0/dist/argon2-bundled.min.js" defer></script>
+
+<link rel="stylesheet" href="/style.css">
+
+<script>
+if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}
+</script>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="lock-overlay" id="security-overlay">
+  <div class="is-lock-overlay-icon">
+    <svg viewBox="0 0 32 32" fill="none" width="28" height="28"><path d="M10 14V10a6 6 0 0112 0v4" stroke="#00f5ff" stroke-width="2" stroke-linecap="round"/><rect x="6" y="14" width="20" height="14" rx="4" stroke="#00f5ff" stroke-width="2"/><circle cx="16" cy="21" r="2" fill="#00f5ff"/></svg>
+  </div>
+  <p>Session locked — all keys wiped from memory</p>
+</div>
+
+<!-- ━━━━ LOCK SCREEN ━━━━ -->
+<div id="lock" class="screen" itemscope itemtype="https://schema.org/WebApplication">
+  <div id="lock-sticky-nav">
+    <div class="lock-nav-brand">
+      <span class="lock-nav-shield">🛡</span>
+      Nulkratos-Core
+    </div>
+  </div>
+  <div class="landing-hero">
+    <div class="brand">
+      <div class="brand-mark" role="img" aria-label="Nulkratos-Core zero-knowledge encrypted messenger logo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" alt="Nulkratos-Core — Zero-Knowledge Encrypted Messenger" width="1" height="1" class="is-abs-hidden">
+        <div class="nk-rings">
+          <div class="nk-ring nk-ring-1"></div>
+          <div class="nk-ring nk-ring-2"></div>
+          <div class="nk-ring nk-ring-3"></div>
+        </div>
+        <div class="is-brand-inner">
+          <svg viewBox="0 0 44 44" fill="none" width="44" height="44">
+            <circle cx="22" cy="22" r="19" stroke="rgba(0,245,255,.2)" stroke-width="1"/>
+            <path d="M22 6C31 6 37 13 37 21C37 29 31 36 22 36C13 36 8 30 8 22" stroke="#00f5ff" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M22 11C29 11 34 16 34 22C34 28 29 33 22 33" stroke="#7fffff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <polygon points="22,14 26,19 22,24 18,19" stroke="#00ff87" stroke-width="1" fill="rgba(0,255,135,.12)"/>
+            <circle cx="22" cy="22" r="2" fill="#00f5ff"/>
+          </svg>
+        </div>
+      </div>
+      <h1 itemprop="name">Nulkratos-Core</h1>
+      <meta itemprop="description" content="Zero-knowledge encrypted chat: AES-256-GCM, Argon2id, HKDF. No account, no phone number, no plaintext stored. Private secure messaging in your browser.">
+            <p class="brand-tagline">AES-256-GCM · Argon2id · HKDF Ratchet · Zero-Knowledge</p>
+      <div class="pq-badge">⬡ End-to-End Encrypted · PIN-Derived Key</div>
+    </div>
+
+  
+  <section aria-hidden="false" class="is-seo-hidden">
+    <h2 itemprop="name">Secure Private Encrypted Messenger — No Account Required</h2>
+    <p>Nulkratos-Core is a free, browser-based, zero-knowledge encrypted messaging app. Send private messages with AES-256-GCM encryption and Argon2id key derivation. No account, no phone number, no email needed. Start a secure anonymous chat channel instantly. Your PIN never leaves your device. All cryptography runs client-side in your browser. Compatible with Tor Browser and VPN for maximum anonymity. No metadata, no identity, no plaintext ever stored on any server.</p>
+    <ul>
+      <li>End-to-end encrypted chat without registration</li>
+      <li>Anonymous messaging app — zero identity required</li>
+      <li>Private browser chat with AES-256 encryption</li>
+      <li>Secure PIN-based messaging, no phone number</li>
+      <li>Zero-knowledge architecture — server sees only ciphertext</li>
+      <li>Works with Tor Browser for maximum privacy</li>
+      <li>VPN compatible private chat application</li>
+      <li>No data collection, no tracking, no analytics</li>
+      <li>HKDF forward-secret message ratchet</li>
+      <li>Chaff traffic injection to defeat metadata analysis</li>
+    </ul>
+  </section>
+  <div class="conn-status connecting" id="conn-status">
+      <span class="conn-dot"></span>
+      <span id="conn-status-text">establishing secure channel…</span>
+    </div>
+
+    <div class="fb-retry-banner" id="fb-retry-banner">
+      <span class="fb-retry-icon">📡</span>
+      <div class="fb-retry-body">
+        <div class="fb-retry-title">Reconnecting…</div>
+        <div class="fb-retry-detail" id="fb-retry-detail">Attempt 1 · next retry in 2s</div>
+        <div class="fb-retry-bar"><div class="fb-retry-fill" id="fb-retry-fill"></div></div>
+      </div>
+    </div>
+
+    <div class="fb-config-warn" id="fb-config-warn" hidden>
+      <div class="fb-config-warn-title">⚠ Firebase Config Required</div>
+      <div class="fb-config-warn-body">
+        1. Create a project at <code>console.firebase.google.com</code><br>
+        2. Enable Firestore (Native mode)<br>
+        3. Replace <code>FIREBASE_CONFIG</code> in the script<br>
+        4. Paste the Firestore rules from the top of this file
+      </div>
+    </div>
+  </div>
+
+  <!-- ① LOCK CARD -->
+  <div class="lock-card">
+    <span class="lock-card-label">Open Zero-Knowledge Secure Channel</span>
+
+    <div class="fragment-banner" id="fragment-banner" hidden>
+      <span class="fragment-banner-icon">🔗</span>
+      <div class="fragment-banner-text">
+        <strong>Channel ID loaded from share link</strong>
+        Fragment never sent to server — zero-knowledge confirmed.
+      </div>
+      <button class="fragment-banner-dismiss" id="fragment-banner-dismiss">✕</button>
+    </div>
+
+    <div class="field">
+      <label>Channel ID</label>
+      <div class="share-row">
+        <input id="l-room" type="text" placeholder="enter channel id" autocomplete="off" autocapitalize="none" spellcheck="false"/>
+        <button class="share-btn" id="copy-share-btn">🔗 Share</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>Your Name</label>
+      <input id="l-name" type="text" placeholder="your name in this channel" autocomplete="off"/>
+    </div>
+    <div class="field">
+      <label>6-Digit PIN (shared secret with your contact)</label>
+      <div class="pin-wrap">
+        <div class="pin-row" id="lp-row">
+          <input class="lp" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off"/>
+          <input class="lp" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off"/>
+          <input class="lp" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off"/>
+          <input class="lp" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off"/>
+          <input class="lp" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off"/>
+          <input class="lp" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off"/>
+        </div>
+        <button class="pin-eye" onclick="togglePin('.lp')" type="button">👁</button>
+      </div>
+    </div>
+    <div class="argon-progress-wrap" id="l-argon-progress">
+      <div class="argon-progress-label" id="l-argon-label">🔐 Deriving key (Argon2id)…</div>
+      <div class="argon-bar-track"><div class="argon-bar-fill" id="l-argon-bar"></div></div>
+    </div>
+    <div class="err" id="l-err"></div>
+    <button class="btn btn-primary" id="enter-btn" disabled>⬡ Enter Secure Channel</button>
+    <div class="divider">or</div>
+    <button class="btn btn-ghost" id="new-room-btn">Create New Channel</button>
+    <button class="is-myrooms-btn" id="myrooms-link-btn">· my channels ·</button>
+  </div>
+
+  <!-- ② LEGAL STATEMENT -->
+  <div class="content-section">
+    <div class="legal-card">
+      <div class="legal-header">
+        <span class="legal-header-icon">⚖️</span>
+        <span class="legal-header-title">Legal Statement &amp; Privacy Commitment</span>
+        <span class="legal-header-badge">Binding</span>
+      </div>
+      <div class="legal-body">
+        <div class="legal-claim"><span class="legal-claim-icon">🚫</span><div class="legal-claim-text"><strong>No plaintext is ever stored</strong>Nulkratos-Core never writes your messages, names, or any readable content to any server or database. The server receives only AES-256-GCM ciphertext — random-looking bytes indistinguishable from noise.</div></div>
+        <div class="legal-claim"><span class="legal-claim-icon">🔑</span><div class="legal-claim-text"><strong>Your PIN never leaves your device</strong>All encryption and decryption happens exclusively in your browser. Your PIN, your derived key, and your decrypted messages never touch any network. Anthropic, Firebase, or any third party cannot access them.</div></div>
+        <div class="legal-claim"><span class="legal-claim-icon">👁‍🗨</span><div class="legal-claim-text"><strong>No user data is collected or sold</strong>We collect no analytics, no identifiers, no IP addresses, and no usage data tied to you. There is no account system and no user profile. We cannot identify you.</div></div>
+        <div class="legal-claim"><span class="legal-claim-icon">🗄️</span><div class="legal-claim-text"><strong>Firebase is a blind relay</strong>The underlying database (Google Firebase Firestore) stores only ciphertext, hashed IDs, and bucketed timestamps. Google and we cannot read any message content — ever.</div></div>
+        <div class="legal-claim"><span class="legal-claim-icon">📜</span><div class="legal-claim-text"><strong>No logging, no backdoors</strong>This application contains no telemetry, no crash reporting tied to identity, and no law-enforcement backdoors. The full source code is verifiable via the Page Integrity tool inside the app.</div></div>
+      </div>
+      <div class="legal-footer">By using Nulkratos-Core you acknowledge this is a tool provided as-is for private communication. You are responsible for safeguarding your PIN and sharing it only through trusted out-of-band channels. Nulkratos-Core is not liable for misuse, loss of PIN, or data loss resulting from channel deletion.</div>
+    </div>
+  </div>
+
+  <!-- ②-B WHAT IS NULKRATOS-CORE -->
+  <div class="content-section">
+    <div class="legal-card is-guide-card-cyan">
+      <div class="legal-header is-guide-header-cyan">
+        <span class="legal-header-icon">⬡</span>
+        <span class="legal-header-title is-guide-title-cyan">What is Nulkratos-Core?</span>
+        <span class="legal-header-badge is-guide-badge-cyan">Overview</span>
+      </div>
+      <div class="legal-body is-guide-body-wide">
+        <p class="is-guide-p-sm">
+          <strong class="is-strong-text">Nulkratos-Core</strong> is a zero-knowledge, browser-based encrypted messenger. It lets two people communicate privately using nothing more than a shared <strong class="is-strong-p1">Channel ID</strong> and a <strong class="is-strong-p1">6-digit PIN</strong> — no account, no phone number, no app install required.
+        </p>
+        <p class="is-guide-p-sm">
+          Every message is encrypted with <strong class="is-strong-text">AES-256-GCM</strong> directly inside your browser before it ever reaches the internet. The server only ever sees random-looking ciphertext — it is technically impossible for us, Google Firebase, or any third party to read your conversations. Your PIN never leaves your device.
+        </p>
+        <p class="is-guide-p-sm">
+          It is designed for situations where maximum privacy matters more than convenience — no identity, no metadata, no backdoors.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ②-C COMPLETE GUIDE -->
+  <div class="content-section">
+    <div class="legal-card is-guide-card-green">
+      <div class="legal-header is-guide-header-green">
+        <span class="legal-header-icon">📖</span>
+        <span class="legal-header-title is-guide-title-green">Complete User Guide</span>
+        <span class="legal-header-badge is-guide-badge-green">How To Use</span>
+      </div>
+      <div class="legal-body is-guide-body-xl">
+
+        <div class="is-col-gap5">
+          <div class="is-step-label">Step 1 — Create a Channel</div>
+          <p class="is-guide-p">Tap <strong class="is-strong-text">Create New Channel</strong>. Enter a unique <strong class="is-strong-p1">Channel ID</strong> (like a room name), your name, your contact's name, and choose a <strong class="is-strong-p1">6-digit PIN</strong>. This PIN is your shared encryption key — both of you must use the same one. Share it in person or via a phone call, never in a message.</p>
+        </div>
+
+        <div class="is-divider-h"></div>
+
+        <div class="is-col-gap5">
+          <div class="is-step-label">Step 2 — Share the Channel ID</div>
+          <p class="is-guide-p">After creating the channel, use the <strong class="is-strong-text">🔗 Share</strong> button or copy the Channel ID and send it to your contact. The Channel ID is not secret — only the PIN unlocks the messages.</p>
+        </div>
+
+        <div class="is-divider-h"></div>
+
+        <div class="is-col-gap5">
+          <div class="is-step-label">Step 3 — Your Contact Joins</div>
+          <p class="is-guide-p">Your contact opens Nulkratos-Core, enters the same <strong class="is-strong-p1">Channel ID</strong>, their name, and the <strong class="is-strong-p1">same 6-digit PIN</strong>. They do <em>not</em> need to create a new channel — they just enter the existing one.</p>
+        </div>
+
+        <div class="is-divider-h"></div>
+
+        <div class="is-col-gap5">
+          <div class="is-step-label">Step 4 — Send Encrypted Messages</div>
+          <p class="is-guide-p">Type in the message box and hit <strong class="is-strong-text">Send</strong>. Every message is encrypted in your browser before transmission. You can <strong class="is-strong-text">long-press</strong> any message to copy, reply, or delete it. Tap <strong class="is-strong-text">↩️ Reply</strong> to quote a specific message.</p>
+        </div>
+
+        <div class="is-divider-h"></div>
+
+        <div class="is-col-gap5">
+          <div class="is-step-label">Step 5 — Using the ⋯ Menu</div>
+          <p class="is-guide-p">Inside a chat, the <strong class="is-strong-text">⋯ (three-dots)</strong> button opens extra options:</p>
+          <div class="is-menu-options">
+            <div class="is-row-flex"><span class="is-icon-mono">🔗</span><span class="is-guide-p-xs"><strong class="is-strong-text">Copy Share Link</strong> — copies a URL containing the Channel ID that your contact can open directly.</span></div>
+            <div class="is-row-flex"><span class="is-icon-mono">🔍</span><span class="is-guide-p-xs"><strong class="is-strong-text">Page Integrity</strong> — computes a SHA-256 hash of the entire app page. Compare this with your contact to confirm neither of you is running a tampered version.</span></div>
+            <div class="is-row-flex"><span class="is-icon-red">🗑</span><span class="is-guide-p-xs"><strong class="is-strong-text">Request Delete</strong> — sends a deletion request to your contact. When both agree, all messages and channel data are permanently erased from the server.</span></div>
+          </div>
+        </div>
+
+        <div class="is-divider-h"></div>
+
+        <div class="is-col-gap5">
+          <div class="is-step-label">Locking &amp; Unlocking</div>
+          <p class="is-guide-p">Tap <strong class="is-strong-text">🔒 Lock</strong> to immediately wipe the session key from memory. Your messages remain encrypted on the server — re-enter the same Channel ID, name, and PIN to access them again. No data is lost.</p>
+        </div>
+
+        <div class="is-divider-h"></div>
+
+        <div class="is-col-gap5">
+          <div class="is-step-label-warn">⚠ Important — PIN Safety</div>
+          <p class="is-guide-p">If you forget your PIN, <strong class="is-strong-red">your messages are permanently unrecoverable</strong>. There is no reset, no recovery code, and no way for us to help — this is by design. Always share your PIN via a trusted offline channel (face-to-face or phone call) and never forget it.</p>
+        </div>
+
+        <div class="is-divider-h"></div>
+
+        <div class="is-col-gap5">
+          <div class="is-step-label">My Channels</div>
+          <p class="is-guide-p">Tap <strong class="is-strong-text">· my channels ·</strong> on the home screen to view channels you have previously accessed on this device. This list is stored locally in your browser and never sent to any server.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ SECURITY LAYERS -->
+  <div class="content-section">
+    <div class="is-sec-arch-label">Security Architecture</div>
+    <div class="pq-layers">
+      <div class="pq-layer pq-layer-1"><div class="pq-layer-icon">🔑</div><div class="is-flex1"><div class="pq-layer-title">Argon2id Key Derivation (64MB RAM)</div><div class="pq-layer-sub">Memory-hard KDF from PIN + channel ID. Shared by both users — same PIN = same key.</div></div><div class="pq-layer-strength">64MB/attempt</div></div>
+      <div class="pq-layer pq-layer-2"><div class="pq-layer-icon">🔒</div><div class="is-flex1"><div class="pq-layer-title">AES-256-GCM Encryption</div><div class="pq-layer-sub">Each message encrypted with authenticated AEAD. Tampering is detected and rejected.</div></div><div class="pq-layer-strength">256-bit</div></div>
+      <div class="pq-layer pq-layer-3"><div class="pq-layer-icon">⚙️</div><div class="is-flex1"><div class="pq-layer-title">Forward-Secret Message Ratchet</div><div class="pq-layer-sub">Each message derives a unique sub-key via HKDF. Compromising one key never exposes others.</div></div><div class="pq-layer-strength">Per-msg key</div></div>
+      <div class="pq-layer pq-layer-4"><div class="pq-layer-icon">👻</div><div class="is-flex1"><div class="pq-layer-title">Chaff Injection + Timestamp Blinding</div><div class="pq-layer-sub">Random dummy messages + bucketed timestamps. Traffic analysis reveals nothing.</div></div><div class="pq-layer-strength">Anti-analysis</div></div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num is-stat-argon">Argon2</div><div class="stat-label">KDF</div></div>
+      <div class="stat-card"><div class="stat-num">256</div><div class="stat-label">AES-GCM bits</div></div>
+      <div class="stat-card"><div class="stat-num">64MB</div><div class="stat-label">Argon2 RAM</div></div>
+      <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">Plaintext stored</div></div>
+    </div>
+  </div>
+
+  <!-- ④ WHAT DATABASE SEES -->
+  <div class="content-section">
+    <div class="db-sees-card">
+      <div class="db-sees-header"><span class="db-sees-header-icon">🗄️</span><span class="db-sees-header-title">What the database sees</span><span class="db-sees-header-badge">Zero Plaintext</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">channel_id</span><span class="db-sees-val hashed">SHA-256 blind hash of your ID — original never stored</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">message.c</span><span class="db-sees-val encrypted">AES-256-GCM ciphertext (random bytes) ▪ unreadable</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">message.i</span><span class="db-sees-val encrypted">Random 96-bit IV — different every message</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">sender.sc/si</span><span class="db-sees-val encrypted">Encrypted sender name — server cannot identify who</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">_bt</span><span class="db-sees-val ts">Bucketed timestamp ± 5min — exact time hidden</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">_chaff</span><span class="db-sees-val bool">Dummy entries mixed in — server can't tell real from fake</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">_x / _y / _z</span><span class="db-sees-val encrypted">Random decoy fields — obscures message structure</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">pinArgon2 / pinFP</span><span class="db-sees-val hashed">Argon2id hash of PIN — original PIN never stored</span></div>
+      <div class="db-sees-row"><span class="db-sees-key">names / content</span><span class="db-sees-val none">Never stored in plaintext — ever</span></div>
+      <div class="db-sees-note"><strong>The server is a blind relay.</strong> Without the PIN — which never leaves your device — all data is indistinguishable from random noise.</div>
+    </div>
+  </div>
+
+  <!-- ⑤ DEVICE REQUIREMENTS -->
+  <div class="content-section">
+    <div class="req-card">
+      <div class="req-header">
+        <span class="req-header-icon">💻</span>
+        <span class="req-header-title">Device Requirements</span>
+        <span class="req-header-badge">Minimum Spec</span>
+      </div>
+      <div class="req-rows">
+        <div class="req-row"><span class="req-row-name">Browser</span><span class="req-row-val">Chrome 90+, Firefox 88+, Safari 15+, Edge 90+</span><span class="req-badge req">Required</span></div>
+        <div class="req-row"><span class="req-row-name">WebCrypto API</span><span class="req-row-val">Must be available — all modern browsers support it</span><span class="req-badge req">Required</span></div>
+        <div class="req-row"><span class="req-row-name">RAM</span><span class="req-row-val">256 MB free minimum — Argon2id uses 64 MB per login</span><span class="req-badge warn">Important</span></div>
+        <div class="req-row"><span class="req-row-name">CPU</span><span class="req-row-val">Any modern processor — key derivation takes 1–4 seconds</span><span class="req-badge ok">Any</span></div>
+        <div class="req-row"><span class="req-row-name">JavaScript</span><span class="req-row-val">Must be enabled — the entire app runs client-side</span><span class="req-badge req">Required</span></div>
+        <div class="req-row"><span class="req-row-name">Connection</span><span class="req-row-val">Internet required for message sync only</span><span class="req-badge ok">Any speed</span></div>
+        <div class="req-row"><span class="req-row-name">Storage</span><span class="req-row-val">LocalStorage for device ID only — no messages stored</span><span class="req-badge ok">Minimal</span></div>
+        <div class="req-row"><span class="req-row-name">Protocol</span><span class="req-row-val">HTTPS strongly recommended — HTTP works but is unsafe</span><span class="req-badge warn">HTTPS</span></div>
+      </div>
+      <div class="req-note">Argon2id is intentionally memory-hard. On very low-end devices (&lt;1 GHz or &lt;256 MB RAM) the login step may take longer — this is by design to resist brute-force attacks.</div>
+    </div>
+  </div>
+
+  <!-- ⑥ PRIVACY BOOST — VPN + TOR GUIDE -->
+  <div class="content-section">
+    <div class="req-card is-vpn-card">
+      <div class="req-header is-vpn-header">
+        <span class="req-header-icon">🛡️</span>
+        <span class="req-header-title is-vpn-title">Boost Your Privacy: VPN &amp; Tor</span>
+        <span class="req-header-badge is-vpn-badge">Maximum Anonymity</span>
+      </div>
+      <div class="req-rows">
+        <div class="req-row"><span class="req-row-name is-vpn-step-green">Step 1</span><span class="req-row-val"><strong class="is-strong-text">Enable a trusted VPN</strong> — Connect through a no-log VPN before opening this app. Your ISP and network observer will see only encrypted traffic to the VPN server, not to this site.</span><span class="req-badge ok">VPN</span></div>
+        <div class="req-row"><span class="req-row-name is-vpn-step-green">Step 2</span><span class="req-row-val"><strong class="is-strong-text">Use Tor Browser</strong> — Open this app in Tor Browser for full IP anonymisation. Your real IP address becomes completely unknown to Firebase, Cloudflare, or any observer. JavaScript must remain enabled for the app to function.</span><span class="req-badge ok">Tor</span></div>
+        <div class="req-row"><span class="req-row-name is-vpn-step-green">Step 3</span><span class="req-row-val"><strong class="is-strong-text">Stack VPN over Tor</strong> — For the highest level of anonymity, connect your VPN first, then use Tor Browser. This hides your Tor usage from your ISP and hides your VPN from the exit node.</span><span class="req-badge ok">Both</span></div>
+        <div class="req-row"><span class="req-row-name is-vpn-step-cyan">Step 4</span><span class="req-row-val"><strong class="is-strong-text">Share channel ID out-of-band</strong> — Never send the channel ID or PIN over the same channel you are trying to protect. Use a face-to-face meeting, an offline note, or a phone call.</span><span class="req-badge req">Critical</span></div>
+        <div class="req-row"><span class="req-row-name is-vpn-step-cyan">Step 5</span><span class="req-row-val"><strong class="is-strong-text">Verify Page Integrity</strong> — After loading the app, both parties should open the ⋯ menu → Page Integrity and compare the SHA-256 hash of the page. A match confirms neither side is running a tampered version.</span><span class="req-badge req">Verify</span></div>
+        <div class="req-row"><span class="req-row-name is-vpn-step-cyan">Step 6</span><span class="req-row-val"><strong class="is-strong-text">Use a private browsing session</strong> — Open the app in a private / incognito window to prevent browser history, cached data, or autofill from leaking information about your session.</span><span class="req-badge warn">Recommended</span></div>
+      </div>
+      <div class="req-note is-vpn-note">Combined with Nulkratos-Core's AES-256-GCM encryption, Argon2id key derivation, chaff injection, and zero-knowledge architecture, following these steps makes your communication virtually untraceable at every layer — network, metadata, and content.</div>
+    </div>
+  </div>
+
+  <!-- ⑦ FAQ -->
+  <div class="content-section">
+    <div class="faq-card" itemscope itemtype="https://schema.org/FAQPage">
+      <div class="faq-header"><span class="faq-header-icon">❓</span><span class="faq-header-title">Frequently Asked Questions</span></div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" id="faq-0"><div class="faq-q" onclick="toggleFaq(0)"><span class="faq-q-text" itemprop="name">Can Nulkratos-Core read my messages?</span><span class="faq-q-arrow">▾</span></div><div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">No. All encryption and decryption happens entirely inside your browser. Your PIN and derived encryption key never leave your device — not even as a hash we could reverse. We receive only ciphertext that is mathematically impossible to decrypt without your PIN.</span></div></div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" id="faq-1"><div class="faq-q" onclick="toggleFaq(1)"><span class="faq-q-text" itemprop="name">What happens if I forget my PIN?</span><span class="faq-q-arrow">▾</span></div><div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Your messages are permanently unrecoverable. The PIN is the only key that can decrypt your data — there is no password reset, no recovery code, and no backdoor. This is by design: zero-knowledge means we genuinely have no way to help. Always share your PIN through a secure out-of-band channel (phone call, in person) and remember it.</span></div></div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" id="faq-2"><div class="faq-q" onclick="toggleFaq(2)"><span class="faq-q-text" itemprop="name">Is the connection secure if I use HTTP instead of HTTPS?</span><span class="faq-q-arrow">▾</span></div><div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Always use HTTPS. While messages are encrypted before leaving your device, an active network attacker on a plain HTTP connection could serve you a tampered version of this page. You can also use the <code>Page Integrity</code> tool (in the ⋯ menu inside a chat) to verify the app hash with your contact.</span></div></div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" id="faq-3"><div class="faq-q" onclick="toggleFaq(3)"><span class="faq-q-text" itemprop="name">How is this different from other secure messaging apps?</span><span class="faq-q-arrow">▾</span></div><div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Nulkratos-Core is a zero-install, browser-based, PIN-derived encrypted messenger. Unlike most other security apps, it requires no phone number, no account, and no installation — just a shared channel ID and PIN agreed out-of-band. Everything runs entirely in your browser with no identity linkage whatsoever. It is purpose-built for scenarios where maximum privacy, anonymity, and zero metadata exposure matter most.</span></div></div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" id="faq-4"><div class="faq-q" onclick="toggleFaq(4)"><span class="faq-q-text" itemprop="name">What is chaff injection and why does it matter?</span><span class="faq-q-arrow">▾</span></div><div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Chaff injection means the app periodically sends random encrypted dummy messages alongside your real ones. Combined with bucketed timestamps (rounded to ± 5 minutes), a network observer cannot tell when you actually sent a message or how long your conversation pauses were. This protects metadata, not just content.</span></div></div>
+    </div>
+  </div>
+
+  <div class="trust-section">
+    <div>
+      <div class="is-sec-stack-label">Security Stack</div>
+      <div class="tech-badges">
+        <span class="tech-badge pq">Argon2id 64MB key derivation</span>
+        <span class="tech-badge pq">Message Ratchet (HKDF chain)</span>
+        <span class="tech-badge pq">Chaff Traffic Injection</span>
+        <span class="tech-badge pq">Timestamp Blinding</span>
+        <span class="tech-badge">AES-256-GCM</span>
+        <span class="tech-badge">Page Integrity Verifier</span>
+        <span class="tech-badge">Non-extractable CryptoKey</span>
+        <span class="tech-badge">Zero-knowledge architecture</span>
+        <span class="tech-badge">Auto session lock</span>
+      </div>
+    </div>
+    <div class="footer-note" itemscope itemtype="https://schema.org/Organization" itemprop="publisher">Nulkratos-Core · Zero-Knowledge Secure Messaging<br>AES-256-GCM + Argon2id + HKDF Ratchet + Chaff<br><br>© 2025 Nulkratos-Core. All rights reserved.<br>This is a highly complex proprietary system. No redesign or redistribution is permitted.<br>Any use of this software's design, architecture, or code can be claimed by the author.<br>For changes or feature requests, contact: <a href="mailto:nulkratos@gmail.com" class="is-footer-email">nulkratos@gmail.com</a></div>
+  </div>
+</div>
+
+<!-- ━━━━ CHAT SCREEN ━━━━ -->
+<div id="chat" class="screen">
+  <div class="c-header">
+    <div class="c-header-left">
+      <div class="avatar-wrap">
+        <div class="avatar" id="c-avatar">?</div>
+        <div class="av-dot" id="c-av-dot"></div>
+      </div>
+      <div class="c-info">
+        <div class="c-name" id="c-name">…</div>
+        <div class="c-status" id="c-status">connecting…</div>
+      </div>
+    </div>
+    <div class="c-header-right">
+      <button class="hbtn hbtn-desktop room-id-btn" id="c-roomid-btn" title="Copy channel ID">—</button>
+      <button class="hbtn hbtn-desktop" id="c-share-btn" class="hbtn hbtn-desktop is-share-btn">🔗 Share</button>
+      <button class="hbtn hbtn-desktop" id="pq-toggle-btn" class="hbtn hbtn-desktop is-live-btn">📊 Live State</button>
+      <button class="hbtn hbtn-desktop" id="lock-btn">🔒 Lock</button>
+      <div class="opts-wrap">
+        <button class="opts-btn-el" id="opts-btn" title="More options">⋯</button>
+        <div class="opts-menu" id="opts-menu">
+          <button class="opt opt-mobile-only" id="opt-roomid-mobile"><span class="opt-icon">⬡</span><span id="opt-roomid-text">Copy channel ID</span></button>
+          <button class="opt opt-mobile-only" id="opt-share-mobile"><span class="opt-icon">🔗</span>Share link</button>
+          <button class="opt opt-mobile-only" id="opt-crypto-mobile"><span class="opt-icon">📊</span>Live encryption state</button>
+          <button class="opt opt-mobile-only" id="opt-lock-mobile"><span class="opt-icon">🔒</span>Lock session</button>
+          <div class="opt-divider opt-mobile-only"></div>
+          <button class="opt opt-mobile-only" id="opt-share-link"><span class="opt-icon">🔗</span>Copy share link</button>
+          <button class="opt" id="opt-sha"><span class="opt-icon">🔍</span>Page integrity</button>
+          <button class="opt red" id="opt-del"><span class="opt-icon">🗑</span>Request Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="del-request-banner" id="del-banner" hidden>
+    <span class="del-banner-text" id="del-banner-text"></span>
+    <button class="del-banner-btn" id="del-banner-agree" hidden>Agree &amp; Delete</button>
+    <button class="del-banner-cancel" id="del-banner-cancel" hidden>✕</button>
+  </div>
+
+  <div class="sync-bar" id="sync-bar">connecting…</div>
+  <div class="reply-bar" id="reply-bar">
+    <div class="reply-bar-line"></div>
+    <div class="reply-bar-content">
+      <div class="reply-bar-name" id="reply-bar-name"></div>
+      <div class="reply-bar-text" id="reply-bar-text"></div>
+    </div>
+    <button class="reply-bar-close" id="reply-bar-close">✕</button>
+  </div>
+
+  <div class="msgs is-msgs-wrap" id="msgs">
+    <div class="empty-msgs" id="empty-msgs">
+      <div class="lock-anim">⬡</div>
+      <span>Zero-knowledge channel active. Send the first message.</span>
+    </div>
+  </div>
+
+  <button id="scroll-fab" aria-label="Scroll to bottom">
+    ↓ bottom
+    <span class="scroll-fab-badge" id="scroll-fab-badge"></span>
+  </button>
+
+  <div class="emoji-panel" id="emoji-panel"></div>
+
+  <!-- FLOATING PANELS -->
+  <div id="journey-panel" class="chat-panel">
+    <div class="jp-header">
+      <div class="jp-title">🛡 How your message travels</div>
+      <div class="jp-status-pill" id="jp-status-pill">
+        <span class="jp-status-dot"></span>
+        <span id="jp-status-text">Waiting…</span>
+      </div>
+      <button class="jp-close" id="jp-close">✕</button>
+    </div>
+    <div class="jp-body">
+      <div class="jp-tagline">Every message is <strong>locked before it leaves your device</strong> and can only be opened by your contact.</div>
+      <div class="jp-steps" id="jp-steps"></div>
+      <div class="jp-progress-track"><div class="jp-progress-fill" id="jp-progress-fill" class="is-prog-zero"></div></div>
+    </div>
+  </div>
+
+  <div id="pq-panel" class="chat-panel">
+    <div class="pq-panel-header">
+      <div class="pq-panel-title">📊 Live State<div class="pq-live-badge"><span class="pq-live-dot"></span>LIVE</div></div>
+      <button class="pq-close" id="pq-close">✕</button>
+    </div>
+    <!-- FIX [F11]: Each counter has .pq-counter-inner wrapping num+label -->
+    <div class="pq-counters">
+      <div class="pq-counter">
+        <div class="pq-counter-inner">
+          <span class="pq-counter-label">chaff</span>
+          <span class="pq-counter-num chaff" id="pq-chaff-count">0</span>
+        </div>
+      </div>
+      <div class="pq-counter">
+        <div class="pq-counter-inner">
+          <span class="pq-counter-label">ratchet</span>
+          <span class="pq-counter-num ratchet" id="pq-ratchet-idx">—</span>
+        </div>
+      </div>
+    </div>
+    <div class="pq-ratchet-chain" id="pq-ratchet-chain">
+      <span class="is-tiny-hint">Send a message to see ratchet progress</span>
+    </div>
+    <div class="pq-trace">
+      <div class="pq-trace-label">Last message trace</div>
+      <div class="pq-field"><span class="pq-key">msg_hash</span><span class="pq-val cipher pending" id="pq-hybrid-hash">awaiting…</span></div>
+      <div class="pq-field"><span class="pq-key">ratchet_idx</span><span class="pq-val pending" id="pq-msg-key">awaiting…</span></div>
+      <div class="pq-field"><span class="pq-key">pad</span><span class="pq-val dim pending" id="pq-padding">awaiting…</span></div>
+      <div class="pq-field"><span class="pq-key">ts_bucket</span><span class="pq-val dim pending" id="pq-ts-blind">awaiting…</span></div>
+      <div class="pq-field"><span class="pq-key">decoys</span><span class="pq-val dim pending" id="pq-decoy">awaiting…</span></div>
+    </div>
+  </div>
+
+  <div id="sha-panel" class="chat-panel">
+    <div class="sha-header">
+      <div class="sha-title">🔍 Page Integrity <span class="sha-live-badge">SHA-256</span></div>
+      <button class="sha-close-btn" id="sha-close">✕ close</button>
+    </div>
+    <div class="sha-body">
+      <div class="page-integrity-status checking" id="pi-status">
+        <span class="pi-icon" id="pi-icon">⏳</span>
+        <div class="pi-info">
+          <div class="pi-label" id="pi-label">Computing page hash…</div>
+          <div class="pi-sub" id="pi-sub">Hashing the full HTML/JS to detect tampering.</div>
+        </div>
+        <button class="pi-recheck" id="pi-recheck">↻ Recheck</button>
+      </div>
+      <div id="pi-hash-section" hidden>
+        <div class="sha-section-h">SHA-256 of this page's source</div>
+        <div class="sha-hash-box" id="pi-hash-box">
+          <div class="is-hash-header">
+            <span class="is-hash-label">Computed hash</span>
+            <button class="sha-copy-btn" id="pi-copy-hash">Copy hash</button>
+          </div>
+          <div class="sha-hash-text" id="pi-hash-text">—</div>
+          <div class="sha-byte-wrap" id="pi-byte-wrap"></div>
+        </div>
+      </div>
+      <div id="pi-details-section" hidden>
+        <div class="sha-section-h">Details</div>
+        <div class="sha-stats-grid">
+          <div class="sha-stat"><div class="sha-stat-label">Algorithm</div><div class="sha-stat-val">SHA-256 (WebCrypto)</div></div>
+          <div class="sha-stat"><div class="sha-stat-label">Scope</div><div class="sha-stat-val">Full page HTML</div></div>
+          <div class="sha-stat"><div class="sha-stat-label">Page size</div><div class="sha-stat-val" id="pi-page-size">—</div></div>
+          <div class="sha-stat"><div class="sha-stat-label">Computed at</div><div class="sha-stat-val" id="pi-computed-at">—</div></div>
+        </div>
+        <div class="is-hash-info">
+          Share this hash out-of-band to confirm you're both running the same unmodified app.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MINI JOURNEY BAR -->
+  <div class="mini-journey-bar" id="mini-journey-bar">
+    <div class="mjb-inner" id="mjb-inner">
+      <span class="mjb-icon" id="mjb-icon">🔐</span>
+      <span class="mjb-friendly-text" id="mjb-friendly-text">Preparing your message…</span>
+      <div class="mjb-dots" id="mjb-dots">
+        <div class="mjb-dot-anim"></div>
+        <div class="mjb-dot-anim"></div>
+        <div class="mjb-dot-anim"></div>
+      </div>
+      <span class="mjb-time-label" id="mjb-time-label"></span>
+    </div>
+  </div>
+
+  <div class="composer">
+    <button class="emoji-btn" id="emoji-toggle-btn">😊</button>
+    <textarea class="composer-input" id="c-input" placeholder="Message…" rows="1"></textarea>
+    <button class="journey-btn" id="journey-toggle-btn" title="See how your message travels securely">
+      🛡
+      <span class="journey-btn-badge"></span>
+    </button>
+    <button class="send-btn" id="send-btn" disabled>
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ━━━━ MY CHANNELS ━━━━ -->
+<div id="myrooms" class="screen">
+  <div class="myrooms-header">
+    <button class="hbtn" id="myrooms-back">← Back</button>
+    <h2 aria-label="My Channels">My Channels</h2>
+    <button class="hbtn" id="myrooms-refresh">↻</button>
+  </div>
+  <div class="myrooms-body" id="myrooms-body">
+    <div class="is-loading-center"><span class="spinner"></span> Loading…</div>
+  </div>
+</div>
+
+<!-- CREATE CHANNEL OVERLAY -->
+<div class="overlay" id="ov-create">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>Create Secure Channel</h3>
+    <p>Both users must use the <strong>same PIN</strong> — it's the shared secret that generates your encryption key. Share your PIN securely out-of-band.</p>
+    <div class="field"><label>Channel ID</label><input id="s-room" type="text" placeholder="choose a unique id" autocomplete="off" autocapitalize="none" spellcheck="false"/></div>
+    <div class="field"><label>Your Name</label><input id="s-n1" type="text" placeholder="your name" autocomplete="off"/></div>
+    <div class="field"><label>Contact's Name</label><input id="s-n2" type="text" placeholder="their name" autocomplete="off"/></div>
+    <div class="field">
+      <label>6-Digit PIN (share this with your contact!)</label>
+      <div class="pin-wrap">
+        <div class="pin-row">
+          <input class="sp" type="password" maxlength="1" inputmode="numeric" autocomplete="off"/>
+          <input class="sp" type="password" maxlength="1" inputmode="numeric" autocomplete="off"/>
+          <input class="sp" type="password" maxlength="1" inputmode="numeric" autocomplete="off"/>
+          <input class="sp" type="password" maxlength="1" inputmode="numeric" autocomplete="off"/>
+          <input class="sp" type="password" maxlength="1" inputmode="numeric" autocomplete="off"/>
+          <input class="sp" type="password" maxlength="1" inputmode="numeric" autocomplete="off"/>
+        </div>
+        <button class="pin-eye" onclick="togglePin('.sp')" type="button">👁</button>
+      </div>
+    </div>
+    <div class="argon-progress-wrap" id="s-argon-progress">
+      <div class="argon-progress-label" id="s-argon-label">🔐 Generating Argon2id key…</div>
+      <div class="argon-bar-track"><div class="argon-bar-fill" id="s-argon-bar"></div></div>
+    </div>
+    <div class="err" id="s-err"></div>
+    <button class="btn btn-primary" id="s-create">Create Secure Channel</button>
+    <button class="btn btn-ghost" id="s-cancel">Cancel</button>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="delete-overlay" id="delete-overlay">
+  <div class="delete-modal">
+    <div class="delete-modal-header">
+      <div class="delete-modal-icon-wrap"><span class="delete-modal-icon">🗑</span></div>
+      <div class="delete-modal-title">Delete Channel?</div>
+      <div class="delete-modal-subtitle">Permanent. Irreversible. All data cryptographically erased.</div>
+      <div class="is-del-channel-badge">· <span id="del-modal-room-name">channel-id</span> ·</div>
+    </div>
+    <div class="is-del-erased">All encrypted messages and channel data permanently wiped.</div>
+    <div class="is-del-modal-err" id="del-modal-err"></div>
+    <div class="delete-modal-footer">
+      <button class="btn-delete-confirm" id="del-modal-confirm">Yes, permanently delete</button>
+      <button class="btn-delete-cancel" id="del-modal-cancel">Cancel — keep the channel</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div class="ctx-menu" id="ctx-menu">
+  <button class="ctx-item" id="ctx-copy"><span class="ctx-item-icon">📋</span> Copy</button>
+  <button class="ctx-item" id="ctx-reply"><span class="ctx-item-icon">↩️</span> Reply</button>
+  <button class="ctx-item danger" id="ctx-del"><span class="ctx-item-icon">🗑</span> Delete for me</button>
+</div>
+<div class="reaction-picker" id="reaction-picker">
+  <span class="rp-emoji" data-emoji="❤️">❤️</span>
+  <span class="rp-emoji" data-emoji="😂">😂</span>
+  <span class="rp-emoji" data-emoji="😮">😮</span>
+  <span class="rp-emoji" data-emoji="🔥">🔥</span>
+  <span class="rp-emoji" data-emoji="👍">👍</span>
+  <span class="rp-emoji" data-emoji="⬡">⬡</span>
+</div>
+
+<div id="toast"></div>
+
+<script type="module" src="/app.js"></script>
+<script defer src="/particles.js"></script>
+</html>
